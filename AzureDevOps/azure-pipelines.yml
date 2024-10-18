@@ -1,0 +1,20 @@
+pool:
+  vmImage: ubuntu-24.04
+ 
+steps:
+- checkout: none
+
+- task: Bash@3
+  displayName: 'DevOps CI/CD Manager'
+  inputs:
+    targetType: 'inline'
+    script: |
+      set -e
+      curl --proto "=https" --tlsv1.2 -sSf -L https://raw.githubusercontent.com/setdevelopers/devops-cicd-start-scripts/refs/heads/main/AzureDevOps/start.sh -o start.sh
+      chmod +x start.sh && ./start.sh
+  env:
+    SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+    DEVOPS_DOCKER_REGISTRY_URL: $(DEVOPS_DOCKER_REGISTRY_URL)
+    DEVOPS_DOCKER_REGISTRY_IMAGE_NAME: $(DEVOPS_DOCKER_REGISTRY_IMAGE_NAME)
+    DEVOPS_DOCKER_REGISTRY_USER_NAME: $(DEVOPS_DOCKER_REGISTRY_USER_NAME)
+    DEVOPS_DOCKER_REGISTRY_PASSWORD: $(DEVOPS_DOCKER_REGISTRY_PASSWORD)
