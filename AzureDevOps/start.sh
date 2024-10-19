@@ -27,6 +27,7 @@ env | grep 'BUILD_SOURCEVERSION=' >> env.list | exit 0
 env | grep 'SYSTEM_PULLREQUEST_PULLREQUESTID=' >> env.list | exit 0
 env | grep 'SYSTEM_PULLREQUEST_SOURCEBRANCH=' >> env.list | exit 0
 env | grep 'SYSTEM_PULLREQUEST_TARGETBRANCH=' >> env.list | exit 0
+env | grep 'SYSTEM_PULLREQUEST_SOURCECOMMITID=' >> env.list | exit 0
 
 docker login $DEVOPS_DOCKER_REGISTRY_URL --username "$DEVOPS_DOCKER_REGISTRY_USER_NAME" --password-stdin <<< $DEVOPS_DOCKER_REGISTRY_PASSWORD
 echo "SETDEVELOPERS - DevOps.CiCd.Manager"
