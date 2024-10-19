@@ -15,7 +15,7 @@ while read -r variable
 do
   if [ $variable != "DEVOPS_DOCKER_REGISTRY_URL" ] && [ $variable != "DEVOPS_DOCKER_REGISTRY_IMAGE_NAME" ] && [ $variable != "DEVOPS_DOCKER_REGISTRY_IMAGE_TAG" ] && [ $variable != "DEVOPS_DOCKER_REGISTRY_USER_NAME" ] && [ $variable != "DEVOPS_DOCKER_REGISTRY_PASSWORD" ]
   then
-    env | grep $(echo $variable) >> env.list
+    env | grep $(echo $variable) >> env.list | exit 0
   fi
 done < <(jq -r 'keys[]' variables.json)
 
