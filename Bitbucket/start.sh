@@ -25,7 +25,6 @@ env | grep 'BITBUCKET_PR_ID=' >> env.list | exit 0
 env | grep 'BITBUCKET_PR_DESTINATION_BRANCH=' >> env.list | exit 0
 env | grep 'BITBUCKET_COMMIT=' >> env.list | exit 0
 
-dockerd
 docker login $DEVOPS_DOCKER_REGISTRY_URL --username "$DEVOPS_DOCKER_REGISTRY_USER_NAME" --password-stdin <<< $DEVOPS_DOCKER_REGISTRY_PASSWORD
 echo "SETDEVELOPERS - DevOps.CiCd.Manager"
 echo "Downloading..."
