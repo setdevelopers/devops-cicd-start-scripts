@@ -58,6 +58,7 @@ env | grep 'GITHUB_BASE_REF=' >> env.list | exit 0
 env | grep 'GITHUB_HEAD_REF=' >> env.list | exit 0
 env | grep 'GITHUB_REF=' >> env.list | exit 0
 env | grep 'GITHUB_SHA=' >> env.list | exit 0
+env | grep 'PULLREQUEST_SOURCE_BRANCH_COMMIT=' >> env.list | exit 0
 
 docker login $DEVOPS_DOCKER_REGISTRY_URL --username "$DEVOPS_DOCKER_REGISTRY_USER_NAME" --password-stdin <<< $DEVOPS_DOCKER_REGISTRY_PASSWORD
 echo "SETDEVELOPERS - DevOps.CiCd.Manager"

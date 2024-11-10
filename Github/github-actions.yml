@@ -15,3 +15,4 @@ jobs:
         env:
           SECRETS_JSON: ${{ toJSON(secrets) }}
           VARS_JSON: ${{ toJSON(vars) }}
+          PULLREQUEST_SOURCE_BRANCH_COMMIT: ${{ github.event.pull_request.head.sha }}
