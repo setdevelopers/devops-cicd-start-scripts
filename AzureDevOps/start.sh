@@ -11,11 +11,11 @@ fi
 export AZURE_DEVOPS_EXT_PAT=$SYSTEM_ACCESSTOKEN
 az pipelines variable list --organization $SYSTEM_COLLECTIONURI --project $SYSTEM_TEAMPROJECTID --pipeline-id $SYSTEM_DEFINITIONID > variables.json
 
-while read -r variable
+while read -r key
 do
-  if [ $variable != "DEVOPS_DOCKER_REGISTRY_URL" ] && [ $variable != "DEVOPS_DOCKER_REGISTRY_IMAGE_NAME" ] && [ $variable != "DEVOPS_DOCKER_REGISTRY_IMAGE_TAG" ] && [ $variable != "DEVOPS_DOCKER_REGISTRY_USER_NAME" ] && [ $variable != "DEVOPS_DOCKER_REGISTRY_PASSWORD" ]
+  if [ $key != "DEVOPS_DOCKER_REGISTRY_URL" ] && [ $key != "DEVOPS_DOCKER_REGISTRY_IMAGE_NAME" ] && [ $key != "DEVOPS_DOCKER_REGISTRY_IMAGE_TAG" ] && [ $key != "DEVOPS_DOCKER_REGISTRY_USER_NAME" ] && [ $key != "DEVOPS_DOCKER_REGISTRY_PASSWORD" ]
   then
-    env | grep $(echo $variable) >> env.list | exit 0
+    env | grep $(echo "$key=") >> env.list | exit 0
   fi
 done < <(jq -r 'keys[]' variables.json)
 

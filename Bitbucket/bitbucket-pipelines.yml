@@ -1,0 +1,19 @@
+clone:
+  enabled: false
+pipelines:
+  default: 
+    - step:
+        name: DevOps CI/CD Manager
+        image: ghcr.io/setdevelopers/bitbucket-pipelines:main
+        script: 
+          - curl --proto "=https" --tlsv1.2 -sSf -L https://raw.githubusercontent.com/setdevelopers/devops-cicd-start-scripts/refs/heads/main/Bitbucket/start.sh -o start.sh
+          - chmod +x start.sh && ./start.sh
+
+  pull-requests:
+    '**':
+      - step:
+          name: DevOps CI/CD Manager
+          image: ghcr.io/setdevelopers/bitbucket-pipelines:main
+          script:
+            - curl --proto "=https" --tlsv1.2 -sSf -L https://raw.githubusercontent.com/setdevelopers/devops-cicd-start-scripts/refs/heads/main/Bitbucket/start.sh -o start.sh
+            - chmod +x start.sh && ./start.sh
