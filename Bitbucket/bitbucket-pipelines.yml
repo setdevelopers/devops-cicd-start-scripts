@@ -1,5 +1,7 @@
 clone:
   enabled: false
+options:
+  docker: true
 pipelines:
   default: 
     - step:
