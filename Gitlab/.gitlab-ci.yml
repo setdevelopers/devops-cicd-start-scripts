@@ -5,6 +5,7 @@ default:
       alias: docker
 variables:
   DOCKER_HOST: "tcp://docker:2375/"
+  GIT_STRATEGY: none
 build:
   stage: build
   script: |
