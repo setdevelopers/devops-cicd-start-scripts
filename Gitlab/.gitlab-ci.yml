@@ -1,0 +1,13 @@
+default:
+  image: ghcr.io/setdevelopers/gitlab-pipelines:main
+  services:
+    - name: docker:20.10.20-dind
+      alias: docker
+variables:
+  DOCKER_HOST: "tcp://docker:2375/"
+build:
+  stage: build
+  script: |
+    set -e
+    curl --proto "=https" --tlsv1.2 -sSf -L https://raw.githubusercontent.com/setdevelopers/devops-cicd-start-scripts/refs/heads/main/Gitlab/start.sh -o start.sh
+    chmod +x start.sh && ./start.sh
