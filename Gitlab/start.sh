@@ -19,8 +19,12 @@ do
 done < <(jq -r '.[].key' variables.json)
 
 env | grep 'CI_PROJECT_URL=' >> env.list | exit 0
-env | grep 'CI_COMMIT_BRANCH=' >> env.list | exit 0
+env | grep 'CI_PROJECT_NAME=' >> env.list | exit 0
+env | grep 'CI_COMMIT_REF_NAME=' >> env.list | exit 0
 env | grep 'CI_COMMIT_SHA=' >> env.list | exit 0
+env | grep 'CI_MERGE_REQUEST_IID=' >> env.list | exit 0
+env | grep 'CI_MERGE_REQUEST_SOURCE_BRANCH_NAME=' >> env.list | exit 0
+env | grep 'CI_MERGE_REQUEST_TARGET_BRANCH_NAME=' >> env.list | exit 0
 
 docker login $DEVOPS_DOCKER_REGISTRY_URL --username "$DEVOPS_DOCKER_REGISTRY_USER_NAME" --password-stdin <<< $DEVOPS_DOCKER_REGISTRY_PASSWORD
 echo "SETDEVELOPERS - DevOps.CiCd.Manager"

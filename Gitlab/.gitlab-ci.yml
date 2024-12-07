@@ -6,6 +6,10 @@ default:
 variables:
   DOCKER_HOST: "tcp://docker:2375/"
   GIT_STRATEGY: none
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    - if: $CI_COMMIT_REF_NAME
 build:
   stage: build
   script: |
