@@ -1,5 +1,6 @@
 name: DevOps CI/CD Manager
 on: [push, pull_request]
+permissions: read-all
 jobs:
   devops-cicd-manager:
     runs-on: ubuntu-24.04
